@@ -1,0 +1,105 @@
+{% extends 'company/base.html'%}
+
+{% block page_header %}
+<div class="row">
+	<div class="col-xl-3 col-lg-6">
+		<div id="new-count" class="card card-stats mb-4 mb-xl-0">
+			<div class="card-body">
+				<div class="row">
+					<div class="col">
+						<h5 class="card-title text-uppercase text-muted mb-0">Clients</h5>
+						<span class="h2 font-weight-bold mb-0">{{ client_count }}</span>
+					</div>
+					<div class="col-auto">
+						<div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+							<i class="fas fa-chart-bar"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-xl-3 col-lg-6">
+		<div id="screened-count" class="card card-stats mb-4 mb-xl-0">
+			<div class="card-body">
+				<div class="row">
+					<div class="col">
+						<h5 class="card-title text-uppercase text-muted mb-0">Jobs</h5>
+						<span class="h2 font-weight-bold mb-0">{{ job_count }}</span>
+					</div>
+					<div class="col-auto">
+						<div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+							<i class="fas fa-chart-pie"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-xl-3 col-lg-6">
+		<div id="interviewed-count" class="card card-stats mb-4 mb-xl-0">
+			<div class="card-body">
+				<div class="row">
+					<div class="col">
+						<h5 class="card-title text-uppercase text-muted mb-0">Candidates</h5>
+						<span class="h2 font-weight-bold mb-0">{{ candidate_count }}</span>
+					</div>
+					<div class="col-auto">
+						<div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+							<i class="fas fa-users"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-xl-3 col-lg-6">
+		<div id="joined-count" class="card card-stats mb-4 mb-xl-0">
+			<div class="card-body">
+				<div class="row">
+					<div class="col">
+						<h5 class="card-title text-uppercase text-muted mb-0">Joined</h5>
+						<span class="h2 font-weight-bold mb-0">{{ joined_count }}</span>
+					</div>
+					<div class="col-auto">
+						<div class="icon icon-shape bg-info text-white rounded-circle shadow">
+							<i class="fas fa-percent"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %} 
+
+{% block page_content %}
+<div class="card shadow">
+	<div class="card-header border-0">
+		<div class="row align-items-center">
+			<div class="col">
+				<h3 class="mb-0">POCs</h3>
+			</div>
+			<div class="col text-right">
+				<button class="btn btn-sm btn-primary" id="add-poc">Add POC</button>
+			</div>
+		 </div>
+	</div>
+	<div class="table-responsive">
+		<!-- POCs Table -->
+		<table id="poc-table" class="table align-items-center table-flush">
+			<thead class="thead-light">
+				<tr>
+					<th scope="col">Name</th>
+					<th scope="col">Email</th>
+					<th scope="col">Phone No</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% include 'company/admin/_list.html' %}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+{% endblock %}

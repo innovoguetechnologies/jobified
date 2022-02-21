@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>
+		Dashboard
+	</title>
+	<!-- Favicon -->
+	<link href='{% static "img/icons/common/jobgate_login.ico" %}' rel="icon" type="image/png">
+	<!-- Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+	<!-- Icons -->
+	<link href='{% static "js/plugins/nucleo/css/nucleo.css" %}' rel="stylesheet" />
+	<link href='{% static "js/plugins/@fortawesome/fontawesome-free/css/all.min.css" %}' rel="stylesheet" />
+	<!-- CSS Files -->
+	<link href='{% static "css/argon-dashboard.css" %}' rel="stylesheet" />
+</head>
+
+<body class="">
+	{% include 'candidate/sidenav.html' %}
+	<div class="main-content">
+		{% include 'candidate/topnav.html' %}
+		<div class="header bg-gradient-darkblues pb-8 pt-5 pt-md-8">
+			<div class="container-fluid">
+				<div class="header-body" >
+					<div id="messages">
+						
+					</div>
+					{% for message in messages %}
+						<div class="alert alert-{{ message.tags }}" role="alert">
+							{{ message }}
+						</div>
+					{% endfor %}
+					{% block page_header %}
+						
+					{% endblock %}
+				</div>
+			</div>
+		</div>
+		<div class="container-fluid mt--7 mb-4" style="background : #dee2e6   ">
+			{% block page_content %}
+				
+			{% endblock %}
+		</div>
+	</div>
+<!--   Core   -->
+	<script src='{% static "js/plugins/jquery/dist/jquery.min.js" %}'></script>
+	<script src='{% static "js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js" %}'></script>
+	<!--   Optional JS   -->
+	<script src='{% static "js/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js" %}'></script>
+
+
+	<!--   Argon JS   -->
+	<script src='{% static "js/argon-dashboard.min.js" %}'></script>
+	<!-- JobGate JS -->
+	<script src='{% static "js/jobgate.js" %}'></script>
+	<script src='{% static "js/candidate.js" %}'></script>
+	<script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+	<script>
+		window.TrackJS &&
+			TrackJS.install({
+				token: "ee6fab19c5a04ac1a32a645abde4613a",
+				application: "argonreturning html code in jquery django-dashboard-free"
+			});
+	</script>
+</body>
+
+</html>

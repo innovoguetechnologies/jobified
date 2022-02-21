@@ -1,0 +1,9 @@
+# This file contains the possible list of files that are not to be pushed to git
+
+# Ignore PyCache Files
+*.pyc
+__pycache__
+
+#Ignore Migrations from migrations folder
+migrations
+/env

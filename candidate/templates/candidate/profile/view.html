@@ -1,0 +1,195 @@
+{% extends 'candidate/base.html' %}
+{% load static %}
+{% load custom_tags %}
+
+{% block page_header %}
+<div id="messages">
+
+</div>
+{% endblock %}
+
+{% block page_content %}
+<div class="card shadow my-4 pt-2">
+	<div class="card-header">
+		<div class="row">
+			<div class="col">
+				<h2>My Profile</h2>
+			</div>
+			<div class="col">
+				<a href="{% url 'update_candidate_profile' %}"><button class="btn btn-sm btn-primary float-right">Update</button></a>
+			</div>
+		</div>
+	</div>
+	<div class="card-body mt--4">
+		
+		<div class="row">
+			<div class="col-sm-4 py-2" style="background-color : #f6f9fc;">
+				<img class="img-fluid rounded mx-auto d-block" src="{{ candidate.profile_photo.url }}">
+				<h1 class="text-center">{{ candidate.first_name}} {{ candidate.last_name }}</h1>
+				<div class="row">
+					<div class="col text-right">
+						Gender :
+					</div>
+					<div class="col text-left">
+						{% if candidate.gender == 'Female' %}
+							<i class="fa fa-female"></i>  Female
+						{% elif candidate.gender == 'Male' %}
+							<i class="fa fa-male"></i>  Male
+						{% else %}
+							Other
+						{% endif %}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col text-right">
+						Date of Birth :
+					</div>
+					<div class="col text-left">
+						{{ candidate.dob }}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col text-right">
+						Nationality :
+					</div>
+					<div class="col text-left">
+						{{ candidate.nationality }}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col text-right">
+						Marital Status :
+					</div>
+					<div class="col text-left">
+						{{ candidate.marital_status }}
+					</div>
+				</div>
+				{% if candidate.visa_status != "No Visa" %}
+					<div class="row">
+						<div class="col text-right">
+							{{ candidate.visa_status }} :
+						</div>
+						<div class="col text-left">
+							{{ candidate.visa_country }}
+						</div>
+					</div>
+				{% endif %}
+				<h3 class="mt-3 text-left">Skills</h3>
+				<hr class="mb-2 mt-1">
+				{% if candidate.driving_license == 'Yes' %}
+				<div class="row">
+					<div class="col text-right">
+						Driving License :
+					</div>
+					<div class="col text-left">
+						<i class="fa fa-check-square"></i>
+					</div>
+				</div>
+				{% endif %}
+				{% for skill in candidate.skills %}
+					<span class="badge badge-pill badge-info">{{ skill }}</span>
+				{% endfor %}
+				<h3 class="mt-3 text-left">Languages</h3>
+				<hr class="mb-2 mt-1">
+				{% for language in candidate.languages %}
+					<span class="badge badge-pill badge-success">{{ language }}</span>
+				{% endfor %}
+				{% if candidate.certifications is not None %}
+					<h3 class="mt-3 text-left">Certifications</h3>
+					<hr class="mb-2 mt-1">
+					{% for certification in candidate.certifications %}
+						<span class="badge badge-pill badge-warning">{{ certification }}</span>
+					{% endfor %}
+				{% endif %}
+			</div>
+			<div class="col-8">
+				<h2 class="mt-3 text-left">Education</h2>
+				<hr class="mb-2 mt-1">
+				<div class="row">
+					<div class="col">
+						<label  class="form-control-label"><b>Educational Label :</b></label>
+						<div class="text-left">{{ candidate.edu_level }}</div>
+					</div>
+					<div class="col">
+						<label  class="form-control-label"><b>Year of Completion :</b></label>
+						<div class="text-left">{{ candidate.year_of_completion }}</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<label  class="form-control-label"><b>Country of Education :</b></label>
+						<div class="text-left">{{ candidate.country_of_edu }}</div>
+					</div>
+				{% if candidate.edu_level is not "Basic" %}
+						<div class="col">
+							<label  class="form-control-label"><b>Course :</b></label>
+							<div class="text-left">{{ candidate.course }}</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							<label  class="form-control-label"><b>Specialisation :</b></label>
+							<div class="text-left">{{ candidate.specialisation }}</div>
+						</div>
+						<div class="col">
+							<label  class="form-control-label"><b>Institute :</b></label>
+							<div class="text-left">{{ candidate.institute }}</div>
+						</div>
+				{% endif %}
+				</div>
+				<h2 class="mt-3 text-left">Address</h2>
+				<hr class="mb-2 mt-1">
+				<div class="row">
+					<div class="col">
+						<label  class="form-control-label"><b>Permanent :</b></label>
+						<div class="text-left">{{ candidate.perm_address }}</div>
+					</div>
+					<div class="col">
+						<label  class="form-control-label"><b>Residential :</b></label>
+						<div class="text-left">{{ candidate.res_address }}</div>
+					</div>
+				</div>
+				{% if candidate.experience > 0 %}
+					<h2 class="mt-3 text-left">Experience</h2>
+					<hr class="mb-2 mt-1">
+					<div class="row">
+						<div class="col">
+							<label  class="form-control-label"><b>Experience :</b></label>
+							<div class="text-left">{{ candidate.experience|floatformat:0 }} years, {{ candidate.experience|get_exp_month|default:"0" }} months</div>
+						</div>
+						<div class="col">
+							<label  class="form-control-label"><b>Job Title :</b></label>
+							<div class="text-left">{{ candidate.job_title }}</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+								<label  class="form-control-label"><b>Department :</b></label>
+								<div class="text-left">{{ candidate.dept }}</div>
+						</div>
+						<div class="col">
+							<label  class="form-control-label"><b>Company :</b></label>
+							<div class="text-left">{{ candidate.res_address }}</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							<label  class="form-control-label"><b>Salary :</b></label>
+							<div class="text-left">{{ candidate.salary }} {{ candidate.currency }}</div>
+						</div>
+						<div class="col">
+						</div>
+					</div>
+				{% endif %}
+				<h2 class="mt-3 text-left">About</h2>
+				<hr class="mb-2 mt-1">
+				
+				<blockquote class="blockquote">
+					<p class="mb-0">{{ candidate.about }}</p>
+				</blockquote>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+

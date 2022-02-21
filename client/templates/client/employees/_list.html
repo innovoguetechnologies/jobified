@@ -1,0 +1,17 @@
+{% for employee in employees %}
+	<tr>
+		<th scope="row">
+			{{ employee.first_name }}
+		</th>
+		<td>
+			{{ employee.email }}
+		</td>
+		<td>
+			{{ employee.user.phone_no }}
+		</td>
+	</tr>
+	{% empty %}
+	<tr>
+		<td colspan="7" class="text-center bg-warning">No Employees</td>
+	</tr>
+{% endfor %}

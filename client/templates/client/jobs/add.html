@@ -1,0 +1,88 @@
+<form method="post" action="{% url 'add_job' %}" id="add-job-form">
+	{% csrf_token %}
+	<div class="modal-header">
+		<div class="text-center">
+			<h4 class="modal-title">Add new Job</h4>
+		</div>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+	</div>
+	
+	<div class="modal-body">
+		<div class="row">
+			<div class="col">
+				<div class="form-group">
+					<div class="input-group input-group-alternative">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+						</div>
+						{{ job_details_form.title }}
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="form-group align-middle">
+					<div class="input-group input-group-alternative">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+						</div>
+						{{ job_details_form.job_type }}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="input-group input-group-alternative">
+				<div class="input-group-prepend">
+					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+				</div>
+				{{ job_details_form.location }}
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="input-group input-group-alternative">
+				<div class="input-group-prepend">
+					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+				</div>
+				{{ job_details_form.region }}
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="input-group input-group-alternative">
+				<div class="input-group-prepend">
+					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+				</div>
+				{{ job_details_form.category }}
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="input-group input-group-alternative">
+				<div class="input-group-prepend">
+					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+				</div>
+				{{ job_details_form.tags }}
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="input-group input-group-alternative">
+				<div class="input-group-prepend">
+					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+				</div>
+				{{ job_details_form.description }}
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="input-group input-group-alternative">
+				<div class="input-group-prepend">
+					<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+				</div>
+				{{ job_details_form.salary }}
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		<button type="submit" class="btn btn-primary">Add</button>
+	</div>
+</form>

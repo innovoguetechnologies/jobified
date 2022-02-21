@@ -1,0 +1,183 @@
+{% extends 'accounts/account_root.html' %}
+{% load static %}
+{% block page_content %}
+
+<!-- Page Content -->
+<div class="container mt--8 pb-5">
+	<div class="row justify-content-center">
+		<div class="col-lg-8 col-md-10">
+			<div class="card bg-secondary">
+			<div class="card-body px-lg-4 py-lg-1">
+				
+				<!-- Nested Row within Card Body -->
+				<div class="row">
+				<div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+				<div class="col-lg-7">
+					<div class="p-2">
+						<div class="text-center">
+							<h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+						</div>
+					</div>
+					<form role="form" action="" method="POST" class="mb-5">
+						{% csrf_token %}
+						<div class="form-group">
+							<div class="input-group input-group-alternative">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+								</div>
+								{{ consultant_details_form.name }}
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group input-group-alternative">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+								</div>
+								{{ consultant_details_form.email }}
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group input-group-alternative">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+								</div>
+								{{ auth_details_form.phone_no }}
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group input-group-alternative">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+								</div>
+								{{ auth_details_form.password1 }}
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group input-group-alternative">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+								</div>
+								{{ auth_details_form.password2 }}
+							</div>
+						</div>
+						<h2 class="h4 text-gray-900 mb-4">Billing Details</h2>
+						<div class="form-group">
+							<div class="input-group input-group-alternative">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+								</div>
+								{{ firm_details_form.name }}
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group input-group-alternative">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+								</div>
+								{{ firm_details_form.address }}
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group input-group-alternative">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+								</div>
+								{{ firm_details_form.account_holder }}
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col text-center align-middle">
+								<label>{{ firm_details_form.account_type.label }}</label>
+							</div>
+							<div class="col">
+								{{ firm_details_form.account_type }}
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group input-group-alternative">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+								</div>
+								{{ firm_details_form.account_no }}
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group input-group-alternative">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+								</div>
+								{{ firm_details_form.bank }}
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-sm-6 mb-3 mb-sm-0">
+								<div class="input-group input-group-alternative">
+									<div class="input-group-prepend">
+										<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+									</div>
+									{{ firm_details_form.IFSC }}
+								</div>
+							</div>
+							<div class="col-sm-6 mb-3 mb-sm-0">
+								<div class="input-group input-group-alternative">
+									<div class="input-group-prepend">
+										<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+									</div>
+									{{ firm_details_form.MICR }}
+								</div>
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-sm-6 mb-3 mb-sm-0">
+								<div class="input-group input-group-alternative">
+									<div class="input-group-prepend">
+										<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+									</div>
+									{{ firm_details_form.PAN }}
+								</div>
+							</div>
+							<div class="col-sm-6 mb-3 mb-sm-0">
+								<div class="input-group input-group-alternative">
+									<div class="input-group-prepend">
+										<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+									</div>
+									{{ firm_details_form.website }}
+								</div>
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-sm-6 mb-3 mb-sm-0">
+								<div class="input-group input-group-alternative">
+									<div class="input-group-prepend">
+										<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+									</div>
+									{{ firm_details_form.GSTIN }}
+								</div>
+							</div>
+							<div class="col-sm-6 mb-3 mb-sm-0">
+								<div class="input-group input-group-alternative">
+									<div class="input-group-prepend">
+										<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+									</div>
+									{{ firm_details_form.TAN }}
+								</div>
+							</div>
+						</div>
+						<input type="submit" class="btn btn-primary btn-user btn-block" name="register" value="Register Account">
+						<div class="text-center">
+							<a class="small" href="{% url 'login' 'consultant' %}">Already have an account? Login!</a>
+						</div>
+					</form>
+				</div>
+				</div>
+			</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Page Content -->
+{% for message in messages %}
+	{{ message }}
+{% endfor %}
+{{ register_form.errors }}
+{% endblock %}

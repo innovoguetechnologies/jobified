@@ -1,0 +1,68 @@
+{% extends 'accounts/account_root.html' %}
+{% load static %}
+
+{% block page_content %}
+
+<!-- Page content -->
+<div class="container mt--9 pb-5">
+  <!-- Table -->
+  <div class="row justify-content-center">
+    <div class="col-lg-5 col-md-7">
+      <div class="card bg-secondary shadow border-0">
+        <!--<div class="card-header bg-transparent">
+          <div class="btn-wrapper text-center">
+            <img class="img-responsive mt-3" src="../assets/img/icons/common/jobgate_login.ico" style="width:30%" alt="Chania" >
+            <p class="text-lead text-dark">"Time spent on hiring, is time well spent"– Robert Half</p>
+          </div>
+        </div>-->
+        <div class="card-body px-lg-4 py-lg-1">
+          <div class="btn-wrapper text-center">
+            <img class="img-responsive mt-3" src='{% static "img/icons/common/jobgate_login.ico" %}' style="width:25%" alt="Chania" ><!-- ../assets/img/icons/common/jobgate_login.ico-->
+            <p style="font-size:14px" class="text-lead text-dark">"Time spent on hiring, is time well spent"– Robert Half</p>
+          </div>
+          <form role="form" method="POST">
+			{% csrf_token %}
+            <div class="form-group mb-3">
+              <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                </div>
+                {{ login_form.username }}
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                </div>
+                {{ login_form.password }}
+              </div>
+            </div>
+            <div class="custom-control custom-control-alternative custom-checkbox">
+              <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
+              <label class="custom-control-label" for=" customCheckLogin">
+                <span class="text-muted">Remember me</span>
+              </label>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary my-4" >Sign in</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-6">
+          <a href="#" class="text-light"><small>Forgot password?</small></a>
+        </div>
+        <div class="col-6 text-right">
+          <a href="../examples/register.html" class="text-light"><small>Create new account</small></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+	{% for message in messages %}
+		{{ message }}
+	{% endfor %}
+	{{ register_form.errors }}
+{% endblock %}

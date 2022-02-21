@@ -1,0 +1,105 @@
+{% extends 'candidate/base.html' %}
+{% load static %}
+
+{% block page_header %}
+
+{% endblock %}
+
+{% block page_content %}
+<div class="card shadow">
+	<div class="container" id="schedule-status-cards">
+		<div class="card-body mt--4">
+			<div class="progress-wrapper">
+				<div class="progress-info">
+					<div class="progress-label">
+						<span>Current Status</span>
+					</div>
+					<div class="progress-percentage">
+						<span>{{ schedule.progress }}%</span>
+					</div>
+				</div>
+				<div class="progress">
+					<div class="progress-bar bg-default" role="progressbar" aria-valuenow="{{ schedule.progress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ schedule.progress }}%;"></div>
+				</div>
+			</div>
+			<div class="row">
+				<div id="screening-status" class="col">
+					<div class="card shadow border-primary">
+						<div class="card-body">
+							<h4>Screening Status</h4>
+							<hr class="my--1">
+							<small>{{ schedule.screening_status }}</small>
+						</div>
+					</div>
+				</div>
+				<div id="schedule-status" class="col">
+					<div class="card shadow border-primary">
+						<div class="card-body">
+							<h4>Scheduling Status</h4>
+							<hr class="my--1">
+							<small>{{ schedule.interview_date|default_if_none:"Not Scheduled" }}</small>
+						</div>
+					</div>
+				</div>
+				<div id="interview-status" class="col">
+					<div class="card shadow border-primary">
+						<div class="card-body">
+							<h4>Interview Status</h4>
+							<hr class="my--1">
+							<small>{{ schedule.interview_status }}</small>
+						</div>
+					</div>
+				</div>
+				<div id="joining-status" class="col">
+					<div class="card shadow border-primary">
+						<div class="card-body">
+							<h4>Joining Status</h4>
+							<hr class="my--1">
+							<small>{{ schedule.date_joined|default_if_none:"Not Joined" }}</small>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="card shadow mt-3">
+	<div class="container" id="job-information">
+		<div class="card-header">
+			<h3 class="my--1">Job Info</h3>
+		</div>
+		<div class="card-body">
+			<div class="row pb-3">
+				<div class="col-1">
+					<img class="img-fluid" src="{{ schedule.job.client.logo.url }}">
+				</div>
+				<div class="col mt--2">
+					<h3>{{ schedule.job.client.name }}</h3>
+					<i class="ni ni-square-pin"></i>{{ schedule.job.location }}, {{ schedule.job.region }}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<i class="ni ni-money-coins"></i> Salary :  {{ schedule.job.salary }}
+					<br>
+					Type :  {{ schedule.job.job_type }}
+				</div>
+				<div class="col">
+					<i class="ni ni-tag"></i> Tags :  
+					{% for tag in tags %}
+						<div class="tag-label">
+							<span>{{ tag }}</span>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="row pt-3">
+				<div class="col">
+					<h4>Description</h4>
+					{{ schedule.job.description }}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

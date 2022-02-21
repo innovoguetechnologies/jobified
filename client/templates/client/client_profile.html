@@ -1,0 +1,64 @@
+{% extends 'client/base.html' %}
+{% block page_header %}
+	{% for message in messages %}
+		<div class="alert alert-success alert-dismissible fade show" role="alert">
+			<span class="alert-icon"><i class="ni ni-like-2"></i></span>
+			<span class="alert-text">{{ message }}</span>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+	{% endfor %}
+{% endblock %}
+{% block page_content %}
+<div class="card shadow mb-5">
+	<div class="card-header border-0 ">
+		<div class="row align-items-center">
+			<div class="col">
+				<h1 class="mb-3">Company Details</h1>
+			</div>
+			<div class="col text-right">
+				<button class="btn btn-primary" id="update-client">Update</button>
+			</div>
+		</div>
+	</div>
+	<div class = "card-body mt--3">
+		<form method="POST" id="client-profile-form" enctype="multipart/form-data">
+			{% csrf_token %}
+			<div id="basic-info">
+				<div class="row mb-2">
+					<div class="col">
+						<label class="form-control-label">{{ client_info_form.name.label }}</label>
+						{{ client_info_form.name }}
+					</div>
+					<div class="col">
+						<label class="form-control-label">{{ client_info_form.company_size.label }}</label>
+						{{ client_info_form.company_size }}
+					</div>
+					<div class="col">
+						<label class="form-control-label">{{ client_info_form.address.label }}</label>
+						{{ client_info_form.address }}
+					</div>
+				</div>
+				<div class="row mb-2">
+					<div class="col">
+						<label class="form-control-label">{{ client_info_form.about.label }}</label>
+						{{ client_info_form.about }}
+					</div>
+					<div class="col">
+						<label class="form-control-label">Company Logo</label>
+						<div class="custom-file">
+							{{ client_info_form.logo }}
+							<label class="custom-file-label" for="customFileLang">{{ client_info_form.logo.label }}</label>
+						</div>
+					</div>
+				</div>
+			</div>	
+			<div class="float-right mt-3" id="client-update-action">
+				
+			</div>
+		</form>
+	<div>
+</div>
+
+{% endblock %}

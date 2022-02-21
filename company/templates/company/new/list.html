@@ -1,0 +1,56 @@
+{% extends 'company/base.html'%}
+
+{% block page_content %}
+<div class="card shadow">
+	<div class="card-header border-0">
+		<div class="row align-items-center">
+			<div class="col">
+				<h3 class="mb-0">New Clients</h3>
+			</div>
+		 </div>
+	</div>
+	<div class="table-responsive">
+		<!-- Consultant Members Table -->
+		<table id="jobs-table" class="table align-items-center table-flush">
+			<thead class="thead-light">
+				<tr>
+					<th scope="col">Name</th>
+					<th scope="col">Address</th>
+					<th scope="col">Company Size</th>
+					<th scope="col"></th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for client in clients %}
+					<tr data-id="{{ client.id }}">
+						<th scope="row">
+							<div class="row">
+								<div class="col-2">
+									<img class="img-fluid" src="{{ client.logo.url }}">
+								</div>
+								<div class="col-10">
+									<b>{{ client.name }}</b>
+								</div>
+							</div>
+						</th>
+						<td>
+							{{ client.address }}
+						</td>
+						<td>
+							{{ client.company_size }}
+						</td>
+						<td>
+							<a href="{% url 'become_poc' client.id %}"><button class="btn btn-primary btn-sm">Become POC</button></a>
+						</td>
+					</tr>
+					{% empty %}
+					<tr>
+						<td colspan="7" class="text-center bg-warning">No new clients</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+{% endblock %}
+

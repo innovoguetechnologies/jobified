@@ -1,0 +1,20 @@
+<---        Docs        --->
+============================
+
+Four types of users:
+
+1. Candidate:
+    The Job seeker.
+    css class : bg-candidate
+    
+2. Consultant:
+    Candidate collector and bulk applier
+    css class : bg-consultant
+    
+3. Client:
+    Vaccancy Creator
+    css class : bg-client
+    
+4. Company
+    Us- JobGate
+    css class : bg-company

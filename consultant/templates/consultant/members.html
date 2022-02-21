@@ -1,0 +1,37 @@
+{% extends 'consultant/mod_base.html'%}
+
+{% block page_content %}
+<div class="card shadow">
+	<div class="card-header border-0">
+		<div class="row align-items-center">
+			<div class="col">
+				<h3 class="mb-0">Members</h3>
+			</div>
+			<div class="col text-right">
+				<button class="btn btn-sm btn-primary" id="add-member">Add Member</button>
+			</div>
+		 </div>
+	</div>
+	<div class="table-responsive">
+		<!-- Consultant Members Table -->
+		<table id="members-table" class="table align-items-center table-flush">
+			<thead class="thead-light">
+				<tr>
+					<th scope="col">Name</th>
+					<th scope="col">Email</th>
+					<th scope="col">Phone No</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% include 'consultant/part_members.html' %}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="modal fade" id="modal-add">
+	<div class="modal-dialog">
+		<div class="modal-content">
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% for poc in pocs %}
+	<tr>
+		<th scope="row">
+			{{ poc.first_name }} {{ poc.last_name}}
+		</th>
+		<td>
+			{{ poc.email }}
+		</td>
+		<td>
+			{{ poc.user.phone_no }}
+		</td>
+	</tr>
+	{% empty %}
+	<tr>
+		<td colspan="7" class="text-center bg-warning">No POCs</td>
+	</tr>
+{% endfor %}

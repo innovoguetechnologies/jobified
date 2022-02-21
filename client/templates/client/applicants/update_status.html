@@ -1,0 +1,61 @@
+<div class="card-body mt--4">
+	<div class="progress-wrapper">
+		<div class="progress-info">
+			<div class="progress-label">
+				<span>Current Status</span>
+			</div>
+			<div class="progress-percentage">
+				<button class="btn btn-primary btn-sm" id="update-schedule" data-progress="{{ schedule.progress }}">Update</button>
+				<span>{{ schedule.progress }}%</span>
+			</div>
+		</div>
+		<div class="progress">
+			<div class="progress-bar bg-default" role="progressbar" aria-valuenow="{{ schedule.progress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ schedule.progress }}%;"></div>
+		</div>
+	</div>
+	<form method="POST" action = "{% url 'update_schedule' schedule.id %}" id="schedule-update-form" data-schedule-id="{{ schedule.id }}">
+		<div class="row">
+			{% csrf_token %}
+			{{ schedule_form.progress }}
+			<div id="screening-status" class="col">
+				<div class="card shadow border-primary">
+					<div class="card-body">
+						<h4>Screening Status</h4>
+						<hr class="my--1">
+						<small>{{ schedule_form.screening_status }}</small>
+					</div>
+				</div>
+			</div>
+			<div id="schedule-status" class="col">
+				<div class="card shadow border-primary">
+					<div class="card-body">
+						<h4>Scheduling Status</h4>
+						<hr class="my--1">
+						<small>{{ schedule_form.interview_date|default_if_none:"Not Scheduled" }}</small>
+					</div>
+				</div>
+			</div>
+			<div id="interview-status" class="col">
+				<div class="card shadow border-primary">
+					<div class="card-body">
+						<h4>Interview Status</h4>
+						<hr class="my--1">
+						<small>{{ schedule_form.interview_status }}</small>
+					</div>
+				</div>
+			</div>
+			<div id="joining-status" class="col">
+				<div class="card shadow border-primary">
+					<div class="card-body">
+						<h4>Joining Status</h4>
+						<hr class="my--1">
+						<small>{{ schedule_form.date_joined|default_if_none:"Not Joined" }}</small>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="float-right my-2" id="button-space">
+				
+		</div>
+	</form>
+</div>

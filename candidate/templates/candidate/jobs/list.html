@@ -1,0 +1,58 @@
+{% extends 'candidate/base.html'%}
+{% block page_header %}
+	<div id="messages">
+		
+	</div>
+{% endblock %}
+{% block page_content %}
+<div class="card shadow">
+	<div class="card-header border-0">
+		<div class="row align-items-center">
+			<div class="row">
+				<div class="col">
+					<h2 class="mb-0">All Jobs</h2>
+				</div>
+			</div>
+		 </div>
+	</div>
+	<form action="{% url 'list_vaccancies' %}" method="POSt">
+		{% csrf_token %}
+		<div class="row my-1 mx-auto">
+			<div class="col">
+				{{ filter_form.keyword }}
+			</div>
+			<div class="col">
+				{{ filter_form.location }}
+			</div>
+			<div class="col">
+				{{ filter_form.job_type }}
+			</div>
+			<div class="col">
+				<button class="btn btn-primary btn-sm">Filter</button>
+			</div>
+		</div>
+	</form>
+	<div class="table-responsive">
+		<!-- Consultant Members Table-->
+		<table id="jobs-table" class="table align-items-center table-flush">
+			<thead class="thead-light">
+				<tr>
+					<th scope="col">Title</th>
+					<th scope="col">Type</th>
+					<th scope="col">Salary</th>
+					<th scope="col">Location</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% include 'candidate/jobs/_list.html' %}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="modal fade" id="modal-view-job">
+	<div class="modal-dialog">
+		<div class="modal-content">
+		</div>
+	</div>
+{% endblock %}

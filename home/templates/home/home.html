@@ -1,0 +1,25 @@
+{% extends 'home/base.html' %}
+
+{% block title %}
+	Home
+{% endblock %}
+
+{% block body %}
+<h2> HOME </h2>
+<a href="{% url 'AccountRoot' %}">Accounts</a><br>
+Login as:
+<a href="{% url 'login' 'company' %}">Company</a>
+<a href="{% url 'login' 'client' %}">client</a>
+<a href="{% url 'login' 'candidate' %}">candidate</a>
+<a href="{% url 'login' 'consultant' %}">consultant</a>
+<br>
+Register as:
+<a href="{% url 'register_candidate' %}">Candidate</a>
+<a href="{% url 'register_consultant' %}">Consultant</a>
+<a href="{% url 'register_client' %}">Client</a>
+{% endblock %}
+
+<!--
+<a href="{% url 'register' 'company' %}">Company</a>
+<a href="{% url 'register' 'client' %}">client</a>
+ -->

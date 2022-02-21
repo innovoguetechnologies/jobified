@@ -1,0 +1,38 @@
+{% extends 'client/base.html'%}
+
+{% block page_content %}
+<div class="card shadow">
+	<div class="card-header border-0">
+		<div class="row align-items-center">
+			<div class="col">
+				<h3 class="mb-0">Jobs</h3>
+			</div>
+			<div class="col text-right">
+				<button class="btn btn-sm btn-primary" id="add-job">Add Job</button>
+			</div>
+		 </div>
+	</div>
+	<div class="table-responsive">
+		<!-- Consultant Members Table -->
+		<table id="jobs-table" class="table align-items-center table-flush">
+			<thead class="thead-light">
+				<tr>
+					<th scope="col">Title</th>
+					<th scope="col">Type</th>
+					<th scope="col">Location</th>
+					<th scope="col">Category</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% include 'client/jobs/_list.html' %}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="modal fade" id="modal-add-job">
+	<div class="modal-dialog">
+		<div class="modal-content">
+		</div>
+	</div>
+{% endblock %}

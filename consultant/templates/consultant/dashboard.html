@@ -1,0 +1,19 @@
+{% extends 'consultant/mod_base.html'%}
+{% load static %}
+
+{% block page_header %}
+	
+{% endblock %}
+
+{% block page_content %}
+
+	{{ consultant.user.phone_no }}
+	{{ consultant.name }}
+	<button class="btn btn-primary" href="#" role="button" data-toggle="dropdown" id="add_sub" aria-haspopup="true" aria-expanded="false">
+		Add
+	</button>
+	<div class="dropdown-menu dropdown-menu-xl  dropdown-menu-left py-0 overflow-hidden" id="add_sub_div">
+		
+	</div>
+{% endblock %}
+

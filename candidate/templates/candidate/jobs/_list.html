@@ -1,0 +1,31 @@
+{% load static %}
+{% for job in jobs %}
+	<tr data-id="{{ job.id }}">
+		<th scope="row">
+			<div class="row">
+				<div class="col-2">
+					<img class="img-fluid" src="{{ job.client.logo.url }}">
+				</div>
+				<div class="col-10">
+					<h4>
+						{{ job.title }}
+					</h4>
+					{{ job.client.name }}
+				</div>
+			</div>
+		</th>
+		<td>
+			{{ job.job_type }}
+		</td>
+		<td>
+			{{ job.salary }}
+		</td>
+		<td>
+			{{ job.location }}, {{ job.region}}
+		</td>
+	</tr>
+	{% empty %}
+	<tr>
+		<td colspan="7" class="text-center bg-warning">No Jobs uploaded</td>
+	</tr>
+{% endfor %}

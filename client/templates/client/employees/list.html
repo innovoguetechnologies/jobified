@@ -1,0 +1,37 @@
+{% extends 'client/base.html'%}
+
+{% block page_content %}
+<div class="card shadow">
+	<div class="card-header border-0">
+		<div class="row align-items-center">
+			<div class="col">
+				<h3 class="mb-0">Employees</h3>
+			</div>
+			<div class="col text-right">
+				<button class="btn btn-sm btn-primary" id="add-employee">Add Employee</button>
+			</div>
+		 </div>
+	</div>
+	<div class="table-responsive">
+		<!-- Consultant Members Table -->
+		<table id="employees-table" class="table align-items-center table-flush">
+			<thead class="thead-light">
+				<tr>
+					<th scope="col">Name</th>
+					<th scope="col">Email</th>
+					<th scope="col">Phone No</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% include 'client/employees/_list.html' %}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="modal fade" id="modal-add-employee">
+	<div class="modal-dialog">
+		<div class="modal-content">
+		</div>
+	</div>
+{% endblock %}

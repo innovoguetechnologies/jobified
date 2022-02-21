@@ -1,0 +1,78 @@
+{% extends 'company/base.html' %}
+
+{% block page_header %}
+<div class="card shadow">
+	<div class="card-header border-0">
+		<div class="row align-items-center">
+			<div class="col">
+				<h3 class="mb-0">Client Info</h3>
+			</div>
+		 </div>
+	</div>
+	<div class="card-body">
+		<div class="container">
+			<div class="row pb-3">
+				<div class="col-2">
+					<img class="img-fluid" src="{{ client.logo.url }}">
+				</div>
+				<div class="col mt--2">
+					<h3>{{ client.name }}</h3>
+					<i class="ni ni-square-pin"></i>{{ client.address }}
+				</div>
+			</div>
+			Client size : {{ client.company_size }}
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block page_content %}
+<div class="card shadow">
+	<div class="card-header border-0">
+		<div class="row align-items-center">
+			<div class="col">
+				<h3 class="mb-0">Posted Jobs</h3>
+			</div>
+		 </div>
+	</div>
+	<div class="table-responsive">
+		<!-- Consultant Members Table -->
+		<table id="jobs-table" class="table align-items-center table-flush">
+			<thead class="thead-light">
+				<tr>
+					<th scope="col">Title</th>
+					<th scope="col">Type</th>
+					<th scope="col">Location</th>
+					<th scope="col">Category</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for job in jobs %}
+					<tr>
+						<th scope="row">
+							<a href="{% url 'applicants_list' job.id %}">
+								{{ job.title }}
+							</a>
+						</th>
+						<td>
+							{{ job.job_type }}
+						</td>
+						<td>
+							{{ job.location }}
+						</td>
+						<td>
+							{{ job.category }}
+						</td>
+					</tr>
+					{% empty %}
+					<tr>
+						<td colspan="7" class="text-center bg-warning">No Jobs uploaded</td>
+					</tr>
+				{% endfor %}
+
+			</tbody>
+		</table>
+	</div>
+</div>
+{% endblock %}
+

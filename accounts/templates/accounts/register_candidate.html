@@ -1,0 +1,130 @@
+{% extends 'accounts/account_root.html' %}
+{% load static %}
+{% block page_content %}
+
+<!-- Page Content -->
+	<div class="container mt--8 pb-5">
+		<div class="row justify-content-center" id="messages">
+			{% for message in messages %}
+				<div class="alert alert-{{ message.tags }}" role="alert">
+					{{ message }}
+				</div>
+			{% endfor %}
+		</div>
+		<div class="row justify-content-center">
+		<div class="col-lg-8 col-md-10">
+		<div class="card bg-secondary">
+		<div class="card-body px-lg-4 py-lg-5">
+			<div class="row justify-content-center">
+				<div class="col-md-5">
+					<div class="btn-wrapper text-center text-dark">
+						<img class="img-responsive mt-3" src='{% static "img/icons/common/jobgate_login.ico" %}' style="width:50%" alt="Chania" >
+						<p class="text-lead mt-2"><b>Hire the best talent with us!</b></p>
+						<p>Your dream candidate is just around the corner</p>
+					</div>
+				</div>
+				<div class="col-md-7">
+					<form role="form" action="" id="registration-form" method="POST">
+						{% csrf_token %}
+						<div class="form-group row">
+							<div class="col">
+								<div class="input-group input-group-alternative">
+									<div class="input-group-prepend">
+										<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+									</div>
+									{{ candidate_details_form.first_name }}
+								</div>
+							</div>
+							<div class="col">
+								<div class="input-group input-group-alternative">
+									<div class="input-group-prepend">
+										<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+									</div>
+									{{ candidate_details_form.last_name }}
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group input-group-alternative mb-3">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+								</div>
+								{{ candidate_details_form.email }}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-4">
+								<div class="form-group">
+									<div class="input-group input-group-alternative mb-3">
+										<div class="input-group-prepend">
+											<span class="input-group-text">+</span>
+										</div>
+										{{ auth_details_form.country_code }}
+									</div>
+								</div>
+							</div>
+							<div class="col-8">
+								<div class="form-group">
+									<div class="input-group input-group-alternative mb-3">
+										<div class="input-group-prepend">
+											<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+										</div>
+										{{ auth_details_form.phone_no }}
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group input-group-alternative">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+								</div>
+								{{ auth_details_form.password1 }}
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group input-group-alternative">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+								</div>
+								{{ auth_details_form.password2 }}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-7">
+								<div class="input-group input-group-alternative">
+									<div class="input-group-prepend">
+										<span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+									</div>
+									{{ otp_form.otp }}
+								</div>
+							</div>
+							<div class="col-5">
+								<button class="btn btn-primary align-middle" id="send-otp">Send OTP</button>
+							</div>
+							
+						</div>
+						<div class="text-muted font-italic"><small>password strength: <span class="text-success font-weight-700">strong</span></small></div>
+						<div class="row my-4">
+							<div class="col-12">
+								<div class="custom-control custom-control-alternative custom-checkbox">
+									<input class="custom-control-input" id="customCheckRegister" type="checkbox" required>
+									<label class="custom-control-label" for="customCheckRegister">
+										<span class="text-muted">I agree with the <a href="#!">Privacy Policy</a></span>
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="text-center">
+							<button type="submit" class="btn btn-primary mt-4">Create account</button>
+						</div>
+					</form>
+			   </div>
+			</div>
+		</div>
+		</div>
+		</div>
+	</div>
+</div>
+<!-- End Page Content -->
+{% endblock %}

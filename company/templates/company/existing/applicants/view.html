@@ -1,0 +1,239 @@
+{% extends 'company/base.html' %}
+{% load static %}
+{% load custom_tags %}
+
+{% block page_header %}
+<div class="card shadow">
+	<div class="container" id="schedule-status-cards">
+		<div class="card-body mt--4">
+			<div class="progress-wrapper">
+				<div class="progress-info">
+					<div class="progress-label">
+						<span>Current Status</span>
+					</div>
+					<div class="progress-percentage">
+						<span>{{ schedule.progress }}%</span>
+					</div>
+				</div>
+				<div class="progress">
+					<div class="progress-bar bg-default" role="progressbar" aria-valuenow="{{ schedule.progress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ schedule.progress }}%;"></div>
+				</div>
+			</div>
+			<div class="row">
+				<div id="screening-status" class="col">
+					<div class="card shadow border-primary">
+						<div class="card-body">
+							<h4>Screening Status</h4>
+							<hr class="my--1">
+							<small>{{ schedule.screening_status }}</small>
+						</div>
+					</div>
+				</div>
+				<div id="schedule-status" class="col">
+					<div class="card shadow border-primary">
+						<div class="card-body">
+							<h4>Scheduling Status</h4>
+							<hr class="my--1">
+							<small>{{ schedule.interview_date|default_if_none:"Not Scheduled" }}</small>
+						</div>
+					</div>
+				</div>
+				<div id="interview-status" class="col">
+					<div class="card shadow border-primary">
+						<div class="card-body">
+							<h4>Interview Status</h4>
+							<hr class="my--1">
+							<small>{{ schedule.interview_status }}</small>
+						</div>
+					</div>
+				</div>
+				<div id="joining-status" class="col">
+					<div class="card shadow border-primary">
+						<div class="card-body">
+							<h4>Joining Status</h4>
+							<hr class="my--1">
+							<small>{{ schedule.date_joined|default_if_none:"Not Joined" }}</small>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block page_content %}
+
+<div class="card shadow my-4 pt-2">
+	<div class="card-body mt--4">
+		<div class="row">
+			<div class="col-sm-4 py-2" style="background-color : #f6f9fc;">
+				<img class="img-fluid rounded mx-auto d-block" src="{{ schedule.candidate.profile_photo.url }}">
+				<h1 class="text-center">{{ schedule.candidate.first_name}} {{ schedule.candidate.last_name }}</h1>
+				<div class="row">
+					<div class="col text-right">
+						Gender :
+					</div>
+					<div class="col text-left">
+						{% if schedule.candidate.gender == 'Female' %}
+							<i class="fa fa-female"></i>  Female
+						{% elif schedule.candidate.gender == 'Male' %}
+							<i class="fa fa-male"></i>  Male
+						{% else %}
+							Other
+						{% endif %}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col text-right">
+						Date of Birth :
+					</div>
+					<div class="col text-left">
+						{{ schedule.candidate.dob }}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col text-right">
+						Nationality :
+					</div>
+					<div class="col text-left">
+						{{ schedule.candidate.nationality }}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col text-right">
+						Marital Status :
+					</div>
+					<div class="col text-left">
+						{{ schedule.candidate.marital_status }}
+					</div>
+				</div>
+				{% if schedule.candidate.visa_status != "No Visa" %}
+					<div class="row">
+						<div class="col text-right">
+							{{ schedule.candidate.visa_status }} :
+						</div>
+						<div class="col text-left">
+							{{ schedule.candidate.visa_country }}
+						</div>
+					</div>
+				{% endif %}
+				<h3 class="mt-3 text-left">Skills</h3>
+				<hr class="mb-2 mt-1">
+				{% if schedule.candidate.driving_license == 'Yes' %}
+				<div class="row">
+					<div class="col text-right">
+						Driving License :
+					</div>
+					<div class="col text-left">
+						<i class="fa fa-check-square"></i>
+					</div>
+				</div>
+				{% endif %}
+				{% for skill in schedule.candidate.skills %}
+					<span class="badge badge-pill badge-info">{{ skill }}</span>
+				{% endfor %}
+				<h3 class="mt-3 text-left">Languages</h3>
+				<hr class="mb-2 mt-1">
+				{% for language in schedule.candidate.languages %}
+					<span class="badge badge-pill badge-success">{{ language }}</span>
+				{% endfor %}
+				{% if schedule.candidate.certifications is not None %}
+					<h3 class="mt-3 text-left">Certifications</h3>
+					<hr class="mb-2 mt-1">
+					{% for certification in schedule.candidate.certifications %}
+						<span class="badge badge-pill badge-warning">{{ certification }}</span>
+					{% endfor %}
+				{% endif %}
+			</div>
+			<div class="col-8">
+				<h2 class="mt-3 text-left">Education</h2>
+				<hr class="mb-2 mt-1">
+				<div class="row">
+					<div class="col">
+						<label  class="form-control-label"><b>Educational Label :</b></label>
+						<div class="text-left">{{ schedule.candidate.edu_level }}</div>
+					</div>
+					<div class="col">
+						<label  class="form-control-label"><b>Year of Completion :</b></label>
+						<div class="text-left">{{ schedule.candidate.year_of_completion }}</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<label  class="form-control-label"><b>Country of Education :</b></label>
+						<div class="text-left">{{ schedule.candidate.country_of_edu }}</div>
+					</div>
+				{% if schedule.candidate.edu_level is not "Basic" %}
+						<div class="col">
+							<label  class="form-control-label"><b>Course :</b></label>
+							<div class="text-left">{{ schedule.candidate.course }}</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							<label  class="form-control-label"><b>Specialisation :</b></label>
+							<div class="text-left">{{ schedule.candidate.specialisation }}</div>
+						</div>
+						<div class="col">
+							<label  class="form-control-label"><b>Institute :</b></label>
+							<div class="text-left">{{ schedule.candidate.institute }}</div>
+						</div>
+				{% endif %}
+				</div>
+				<h2 class="mt-3 text-left">Address</h2>
+				<hr class="mb-2 mt-1">
+				<div class="row">
+					<div class="col">
+						<label  class="form-control-label"><b>Permanent :</b></label>
+						<div class="text-left">{{ schedule.candidate.perm_address }}</div>
+					</div>
+					<div class="col">
+						<label  class="form-control-label"><b>Residential :</b></label>
+						<div class="text-left">{{ schedule.candidate.res_address }}</div>
+					</div>
+				</div>
+				{% if schedule.candidate.experience > 0 %}
+					<h2 class="mt-3 text-left">Experience</h2>
+					<hr class="mb-2 mt-1">
+					<div class="row">
+						<div class="col">
+							<label  class="form-control-label"><b>Experience :</b></label>
+							<div class="text-left">{{ schedule.candidate.experience|floatformat:0 }} years, {{ schedule.candidate.experience|get_exp_month|default:"0" }} months</div>
+						</div>
+						<div class="col">
+							<label  class="form-control-label"><b>Job Title :</b></label>
+							<div class="text-left">{{ schedule.candidate.job_title }}</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+								<label  class="form-control-label"><b>Department :</b></label>
+								<div class="text-left">{{ schedule.candidate.dept }}</div>
+						</div>
+						<div class="col">
+							<label  class="form-control-label"><b>Company :</b></label>
+							<div class="text-left">{{ schedule.candidate.res_address }}</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							<label  class="form-control-label"><b>Salary :</b></label>
+							<div class="text-left">{{ schedule.candidate.salary }} {{ schedule.candidate.currency }}</div>
+						</div>
+						<div class="col">
+						</div>
+					</div>
+				{% endif %}
+				<h2 class="mt-3 text-left">About</h2>
+				<hr class="mb-2 mt-1">
+				
+				<blockquote class="blockquote">
+					<p class="mb-0">{{ schedule.candidate.about }}</p>
+				</blockquote>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+

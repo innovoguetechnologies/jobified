@@ -1,0 +1,18 @@
+{% for member in members %}
+	<tr>
+		<th scope="row">
+			{{ member.name }}
+		</th>
+		<td>
+			{{ member.email }}
+		</td>
+		<td>
+			{{ member.user.phone_no }}
+		</td>
+	</tr>
+	{% empty %}
+	<tr>
+		<td colspan="7" class="text-center bg-warning">No Members</td>
+	</tr>
+{% endfor 
+{% endfor %}

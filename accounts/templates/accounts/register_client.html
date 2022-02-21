@@ -1,0 +1,132 @@
+{% extends 'accounts/account_root.html' %}
+{% load static %}
+{% block page_content %}
+
+<!-- Page Content -->
+<div class="container mt--8 pb-5">
+	<div class="row justify-content-center">
+		<div class="col-lg-8 col-md-10">
+			<div class="card bg-secondary">
+			<div class="card-body px-lg-4 py-lg-1">
+				
+			  <!-- Nested Row within Card Body -->
+			  <div class="row">
+				<div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+				<div class="col-lg-7">
+					<div class="p-2">
+						<div class="text-center">
+							<h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+						</div>
+					</div>
+					<form role="form" action="" method="POST" class="mb-5" enctype="multipart/form-data">
+						{% csrf_token %}
+						<div class="form-group row">
+							<div class="col">
+								<div class="input-group input-group-alternative">
+									<div class="input-group-prepend">
+										<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+									</div>
+									{{ employee_details_form.first_name }}
+								</div>
+							</div>
+							<div class="col">
+								<div class="input-group input-group-alternative">
+									<div class="input-group-prepend">
+										<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+									</div>
+									{{ employee_details_form.last_name }}
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group input-group-alternative">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+								</div>
+								{{ employee_details_form.email }}
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group input-group-alternative">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+								</div>
+								{{ employee_details_form.designation }}
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group input-group-alternative">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+								</div>
+								{{ auth_details_form.phone_no }}
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group input-group-alternative">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+								</div>
+								{{ auth_details_form.password1 }}
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group input-group-alternative">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+								</div>
+								{{ auth_details_form.password2 }}
+							</div>
+						</div>
+						<h2 class="h4 text-gray-900 mb-4">Company Details</h2>
+						<div class="form-group">
+							<div class="input-group input-group-alternative">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+								</div>
+								{{ client_details_form.name }}
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group input-group-alternative">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+								</div>
+								{{ client_details_form.address }}
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col text-center align-middle">
+								<label>{{ client_details_form.company_size.label }}</label>
+							</div>
+							<div class="col">
+								{{ client_details_form.company_size }}
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group input-group-alternative">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+								</div>
+								{{ client_details_form.about }}
+							</div>
+						</div>
+						<div class="custom-file">
+							{{ client_details_form.logo }}
+							<label class="custom-file-label" for="customFileLang">{{ client_details_form.logo.label }}</label>
+						</div>
+						<hr>
+						<input type="submit" class="btn btn-primary btn-user btn-block" name="register" value="Register Account">
+						<div class="text-center">
+							<a class="small" href="{% url 'login' 'consultant' %}">Already have an account? Login!</a>
+						</div>
+					</form>
+				</div>
+				</div>
+			</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Page Content -->
+{% endblock %}
