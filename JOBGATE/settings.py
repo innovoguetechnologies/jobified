@@ -93,9 +93,11 @@ WSGI_APPLICATION = 'JOBGATE.wsgi.application'
 DATABASES = {
 	'default': {
 		'ENGINE'	: 'django.db.backends.mysql',
-		'NAME'		: 'jobgate',
-		'USER'		: 'root',
-		'PASSWORD'	: 'admin',
+		'NAME'		: 'd27nhjgcbg9vs3',
+		'USER'		: 'auqwxhmwvbnqer',
+		'PASSWORD'	: '34ef5ca6c6b7d0fdcc48db3f95f15c438a6fe41ab1d65c239c21ce1da120934d',
+		'HOST': 'ec2-34-225-66-116.compute-1.amazonaws.com',
+		'Port':'5432',
 	}
 }
 
